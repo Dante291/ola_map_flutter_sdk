@@ -12,7 +12,7 @@ class ZoomButton extends StatelessWidget {
       child: Container(
         height: 30,
         width: 30,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
         ),
         child: Center(

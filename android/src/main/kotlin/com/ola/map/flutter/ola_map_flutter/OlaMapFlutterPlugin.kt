@@ -40,6 +40,7 @@ class OlaMapFlutterPlugin : FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
+    Log.d("Erro", call.method);
     when (call.method) {
       "getPlatformVersion" -> {
         result.success("Android ${android.os.Build.VERSION.RELEASE}")
@@ -131,6 +132,7 @@ class OlaMapViewController(
     }
 
     methodChannel.setMethodCallHandler { call, result ->
+      Log.d("Erro", call.method);
       when (call.method) {
           "getCurrentLocation" -> {
             getCurrentLocation(result)
@@ -231,15 +233,15 @@ class OlaMapViewController(
   }
 
   private fun showCurrentLocation(result: MethodChannel.Result) {
-    val activityContext = context as? Activity
-    activityContext?.runOnUiThread {
-      if (olaMap == null) {
-        result.error("LOCATION_ERROR", "OlaMap instance is not initialized", null)
-        return@runOnUiThread
-      }
+//    val activityContext = context as? Activity
+//    activityContext?.runOnUiThread {
+//      if (olaMap == null) {
+//        result.error("LOCATION_ERROR", "OlaMap instance is not initialized", null)
+//        return@runOnUiThread
+//      }
       olaMap?.showCurrentLocation()
       result.success("Current location shown")
-    }
+//    }
   }
 
   private fun hideCurrentLocation(result: MethodChannel.Result) {
@@ -325,7 +327,7 @@ class OlaMapViewController(
   private fun moveToSpecifiedLocation(call: MethodCall, result: Result) {
     val latitude = call.argument<Double>("latitude")
     val longitude = call.argument<Double>("longitude")
-
+    olaMap?.getCurrentLocation();
     if (latitude != null && longitude != null) {
       val location = OlaLatLng(latitude, longitude)
       val zoomLevel = 15.0 // Set the desired zoom level
