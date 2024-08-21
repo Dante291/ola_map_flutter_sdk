@@ -5,7 +5,7 @@ Future<LocationData?> checkLocationPermission() async {
 
   // bool _serviceEnabled;
   // PermissionStatus _permissionGranted;
-  LocationData _locationData;
+  LocationData locationData;
 
   // _serviceEnabled = await location.serviceEnabled();
   // if (!_serviceEnabled) {
@@ -23,7 +23,7 @@ Future<LocationData?> checkLocationPermission() async {
   //   }
   // }
 
-  _locationData = await location.getLocation();
+  locationData = await location.getLocation();
 
-  return _locationData;
+  return locationData;
 }

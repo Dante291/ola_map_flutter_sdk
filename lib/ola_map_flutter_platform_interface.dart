@@ -25,12 +25,6 @@ abstract class OlaMapFlutterPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  // set channel(MethodChannel channel);
-
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
-
   Future<void> initializeMap(String apiKey) {
     throw UnimplementedError('initializeMap() has not been implemented.');
   }

@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:ola_map_flutter/ola_map_flutter.dart';
 import 'package:ola_map_flutter/widget/zoom_button.dart';
 

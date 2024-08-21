@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ola_map_flutter/utils/permission_location.dart';
@@ -11,12 +10,6 @@ class MethodChannelOlaMapFlutter extends OlaMapFlutterPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   var methodChannel = const MethodChannel('ola_map_flutter');
-
-  @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('initializeMap', {"apiKey": "4moGUXCK31I0On7PLAOAlX7RhdTPKig9IrsRvE36"});
-    return version;
-  }
 
   @override
   Future<void> initializeMap(String apiKey) async {
@@ -148,9 +141,6 @@ class MethodChannelOlaMapFlutter extends OlaMapFlutterPlatform {
     }
   }
 
-  // Utility to capture widget as image
-
-  //removeMarker
   @override
   Future<void> removeMarker({required String markerId}) async {
     try {
@@ -161,16 +151,16 @@ class MethodChannelOlaMapFlutter extends OlaMapFlutterPlatform {
   }
 
   @override
-  void setChannelName(MethodChannel value) {
-    methodChannel = value;
+  void setChannelName(MethodChannel channel) {
+    methodChannel = channel;
   }
 
   @override
   Future<void> handleMethod(MethodCall call) async {
     switch (call.method) {
       case "onError":
-        String error = call.arguments;
-        print("Error: $error");
+        // String error = call.arguments;
+        // print("Error: $error");
         // Handle the error
         break;
       case "onMapReady":

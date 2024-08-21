@@ -13,10 +13,6 @@ class OlaMapController {
     _channel.setMethodCallHandler(OlaMapFlutterPlatform.instance.handleMethod);
   }
 
-  Future<String?> getPlatformVersion() {
-    return OlaMapFlutterPlatform.instance.getPlatformVersion();
-  }
-
   Future<void> initializeMap(String apiKey) {
     return OlaMapFlutterPlatform.instance.initializeMap(apiKey);
   }
