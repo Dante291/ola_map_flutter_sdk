@@ -27,14 +27,11 @@ class OlaMapFlutterPlugin : FlutterPlugin, MethodCallHandler {
 
   private lateinit var channel: MethodChannel
   private lateinit var context: Context
-  private var mapView: OlaMapView? = null
-  private var olaMap: OlaMap? = null
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "ola_map_flutter")
     channel.setMethodCallHandler(this)
     context = flutterPluginBinding.applicationContext
-    mapView = OlaMapView(context)
     flutterPluginBinding.platformViewRegistry.registerViewFactory(
       "OlaMapView", OlaMapViewFactory(flutterPluginBinding.binaryMessenger))
   }
@@ -45,56 +42,11 @@ class OlaMapFlutterPlugin : FlutterPlugin, MethodCallHandler {
       "getPlatformVersion" -> {
         result.success("Android ${android.os.Build.VERSION.RELEASE}")
       }
-      "initializeMap" -> {
-        val apiKey = call.argument<String>("apiKey")
-        if (apiKey != null) {
-          initializeMap(apiKey, result)
-        } else {
-          Log.e("OlaMapFlutterPlugin", "API key is null")
-          result.error("MAP_ERROR", "Please enter your API key", null)
-        }
-      }
-      "addMarker" -> {
-        val latitude = call.argument<Double>("latitude") ?: 0.0
-        val longitude = call.argument<Double>("longitude") ?: 0.0
-        if (olaMap != null) {
-          val markerOptions = OlaMarkerOptions.Builder()
-            .setMarkerId("marker1")
-            .setPosition(OlaLatLng(latitude, longitude))
-            .build()
-          olaMap?.addMarker(markerOptions)
-          result.success("Marker added")
-        } else {
-          Log.e("OlaMapFlutterPlugin", "Map is not initialized")
-          result.error("MAP_ERROR", "Map is not initialized", null)
-        }
-      }
+     
       else -> result.notImplemented()
     }
   }
 
-  private fun initializeMap(apiKey: String, result: Result) {
-    if (mapView == null) {
-      mapView = OlaMapView(context)
-      Log.d("OlaMapFlutterPlugin", "OlaMapView created")
-    }
-
-    mapView?.getMap(apiKey, object : OlaMapCallback {
-      override fun onMapReady(map: OlaMap) {
-        olaMap= map
-        result.success("Map initialized")
-        Log.d("OlaMapFlutterPlugin", "Map initialized successfully")
-      }
-
-      override fun onMapError(error: String) {
-        result.error("MAP_ERROR", error, null)
-        Log.e("OlaMapFlutterPlugin", "Map initialization error: $error")
-      }
-    }) ?: run {
-      result.error("MAP_VIEW_NULL", "mapView is null", null)
-      Log.e("OlaMapFlutterPlugin", "mapView is null")
-    }
-  }
 
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {

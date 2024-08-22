@@ -39,7 +39,8 @@ class _OlaMapState extends State<OlaMap> {
             widget.onPlatformViewCreated(OlaMapController(id));
             // print(widget.showCurrentLocation);
             if (widget.showCurrentLocation == true) {
-              final OlaMapController controller = await _mapControllerCompleter.future;
+              final OlaMapController controller =
+                  await _mapControllerCompleter.future;
               controller.showCurrentLocation();
             }
           },
@@ -96,7 +97,8 @@ class _OlaMapState extends State<OlaMap> {
                   children: [
                     ZoomButton(
                       onTap: () async {
-                        final OlaMapController controller = await _mapControllerCompleter.future;
+                        final OlaMapController controller =
+                            await _mapControllerCompleter.future;
                         controller.zoomIn();
                       },
                       icon: Icons.add,
@@ -104,7 +106,8 @@ class _OlaMapState extends State<OlaMap> {
                     const SizedBox(height: 10),
                     ZoomButton(
                       onTap: () async {
-                        final OlaMapController controller = await _mapControllerCompleter.future;
+                        final OlaMapController controller =
+                            await _mapControllerCompleter.future;
                         controller.zoomOut();
                       },
                       icon: Icons.remove,
@@ -119,7 +122,8 @@ class _OlaMapState extends State<OlaMap> {
                                 child: IconButton(
                                   icon: const Icon(Icons.my_location),
                                   onPressed: () async {
-                                    final OlaMapController controller = await _mapControllerCompleter.future;
+                                    final OlaMapController controller =
+                                        await _mapControllerCompleter.future;
                                     controller.moveToCurrentLocation();
                                     // controller.showCurrentLocation();
                                   },

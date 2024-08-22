@@ -50,11 +50,13 @@ abstract class OlaMapFlutterPlatform extends PlatformInterface {
   }
 
   Future<void> checkLocationPermission() {
-    throw UnimplementedError('checkLocationPermission() has not been implemented.');
+    throw UnimplementedError(
+        'checkLocationPermission() has not been implemented.');
   }
 
   Future<void> requestLocationPermission() {
-    throw UnimplementedError('requestLocationPermission() has not been implemented.');
+    throw UnimplementedError(
+        'requestLocationPermission() has not been implemented.');
   }
 
   Future<void> zoomIn() {
@@ -70,7 +72,8 @@ abstract class OlaMapFlutterPlatform extends PlatformInterface {
   }
 
   Future<void> moveToCurrentLocation() {
-    throw UnimplementedError('moveToCurrentLocation() has not been implemented.');
+    throw UnimplementedError(
+        'moveToCurrentLocation() has not been implemented.');
   }
 
   Future<void> addCustomMarker({
