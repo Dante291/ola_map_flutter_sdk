@@ -1,6 +1,6 @@
 name: ola_map_flutter
 description: "A Flutter plugin for integrating the official Ola Map SDK. This plugin provides access to map functionalities including adding markers, showing and hiding current location, and initializing the map with your API key. Designed to be used in Flutter applications for seamless integration with Ola Maps."
-version: 0.0.5
+version: 0.0.7
 homepage: https://github.com/zeeshux7860/ola_map_flutter_sdk
 
 environment:
@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   # location: ^6.0.2
   geolocator: ^11.1.0
+  get: ^4.6.6
   permission_handler: ^11.3.1
   plugin_platform_interface: ^2.0.2
   screenshot: 2.5.0

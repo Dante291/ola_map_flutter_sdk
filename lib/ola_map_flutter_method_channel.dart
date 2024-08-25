@@ -23,8 +23,7 @@ class MethodChannelOlaMapFlutter extends OlaMapFlutterPlatform {
   @override
   Future<void> addMarker(double latitude, double longitude) async {
     try {
-      await methodChannel.invokeMethod(
-          'addMarker', {'latitude': latitude, 'longitude': longitude});
+      await methodChannel.invokeMethod('addMarker', {'latitude': latitude, 'longitude': longitude});
     } on PlatformException catch (e) {
       throw Exception("Failed to add marker: '${e.message}'.");
     }
@@ -105,13 +104,9 @@ class MethodChannelOlaMapFlutter extends OlaMapFlutterPlatform {
       var currentlocation = await checkLocationPermission();
 
       if (currentlocation == null) {
-        throw Exception(
-            "Failed to get current location: 'Location not found'.");
+        throw Exception("Failed to get current location: 'Location not found'.");
       }
-      await methodChannel.invokeMethod('moveToCurrentLocation', {
-        'latitude': currentlocation.latitude,
-        'longitude': currentlocation.longitude
-      });
+      await methodChannel.invokeMethod('moveToCurrentLocation', {'latitude': currentlocation.latitude, 'longitude': currentlocation.longitude});
     } on PlatformException catch (e) {
       throw Exception("Failed to move to current location: '${e.message}'.");
     }
@@ -130,6 +125,8 @@ class MethodChannelOlaMapFlutter extends OlaMapFlutterPlatform {
     try {
       ScreenshotController screenshotController = ScreenshotController();
       var capturedImage = await screenshotController.captureFromWidget(child);
+      await Future.delayed(Duration(seconds: 1));
+
       var bytes = capturedImage.buffer.asUint8List();
 
       await methodChannel.invokeMethod('addMarker', {
