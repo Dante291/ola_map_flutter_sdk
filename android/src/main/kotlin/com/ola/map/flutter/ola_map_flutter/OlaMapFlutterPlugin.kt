@@ -130,7 +130,7 @@ class OlaMapViewController(
           .setRotateGesturesEnabled(true)
           .setScrollGesturesEnabled(true)
           .setZoomGesturesEnabled(true)
-          .setCompassEnabled(true)
+          .setCompassEnabled(false)
           .setTiltGesturesEnabled(true)
           .setDoubleTapGesturesEnabled(true)
           .build()
