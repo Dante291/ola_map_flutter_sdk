@@ -54,50 +54,6 @@ class _OlaMapState extends State<OlaMap> {
             _handleMapController(); // Handle current location
           },
         ),
-        // Branding
-        Positioned(
-          bottom: 0,
-          left: 0,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: RichText(
-              text: const TextSpan(
-                text: 'OLA',
-                children: [
-                  TextSpan(
-                    text: 'MAP',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 2.0,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(2.0, 2.0),
-                          blurRadius: 3.0,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  letterSpacing: 2.0,
-                  shadows: [
-                    Shadow(
-                      offset: Offset(2.0, 2.0),
-                      blurRadius: 3.0,
-                      color: Colors.grey,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
         // Zoom controls and location button
         widget.showZoomControls ?? false
             ? Positioned(
@@ -108,7 +64,8 @@ class _OlaMapState extends State<OlaMap> {
                     ZoomButton(
                       onTap: () async {
                         try {
-                          final OlaMapController controller = await _mapControllerCompleter.future;
+                          final OlaMapController controller =
+                              await _mapControllerCompleter.future;
                           controller.zoomIn();
                         } catch (e) {
                           print('Error zooming in: $e');
@@ -120,7 +77,8 @@ class _OlaMapState extends State<OlaMap> {
                     ZoomButton(
                       onTap: () async {
                         try {
-                          final OlaMapController controller = await _mapControllerCompleter.future;
+                          final OlaMapController controller =
+                              await _mapControllerCompleter.future;
                           controller.zoomOut();
                         } catch (e) {
                           print('Error zooming out: $e');
@@ -139,10 +97,12 @@ class _OlaMapState extends State<OlaMap> {
                                   icon: const Icon(Icons.my_location),
                                   onPressed: () async {
                                     try {
-                                      final OlaMapController controller = await _mapControllerCompleter.future;
+                                      final OlaMapController controller =
+                                          await _mapControllerCompleter.future;
                                       controller.moveToCurrentLocation();
                                     } catch (e) {
-                                      print('Error moving to current location: $e');
+                                      print(
+                                          'Error moving to current location: $e');
                                     }
                                   },
                                 ),
